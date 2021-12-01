@@ -13,13 +13,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
- console.log(req.body.email);
- console.log(req.body.password);
   var userFound = await Login.find({"email" :  req.body.email, "password" : req.body.password});
-  if (userFound) {
+  if (userFound && userFound.length > 0) {
     res.json({isAdmin:true});
   } else {
-    res.status(400).json({ msg: `Password and email are not valid ` });
+    res.json({isAdmin:false});
   }
 });
 
