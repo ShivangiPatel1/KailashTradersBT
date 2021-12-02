@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const url= process.env.MONGODB_URI;
+const url= process.env.MONGODB_URI ||'mongodb+srv://shivangipatel1:Amazon%402021@kailashtraders1.qg99h.mongodb.net/ProductBDex?retryWrites=true&w=majority';
 const app = express();
 const port = process.env.PORT || 9000;
-mongoose.connect(url,{useNewUrlParser:true});
+mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
 const con = mongoose.connection;
 con.on("open", ()=> {
   console.log("hey you are connected");
