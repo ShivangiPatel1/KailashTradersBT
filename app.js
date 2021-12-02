@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const url = 'mongodb://localhost/ProductBDex';
+const url = 'mongodb+srv://shivangipatel1:Amazon@2021@kailashtraders.qg99h.mongodb.net/kailashtraders?retryWrites=true&w=majority';
 const app = express();
+const port = process.env.PORT || 9000;
 mongoose.connect(url,{useNewUrlParser:true});
 const con = mongoose.connection;
 con.on("open", ()=> {
@@ -32,8 +33,8 @@ app.use(function (req, res, next) {
 });
 app.use('/product',productRouter)
 app.use('/login',adminRouter)
-app.listen(9000,()=>{
-    console.log('server started')
+app.listen(port,()=>{
+    console.log(`server started at ${port}`)
 })
 
 
